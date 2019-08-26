@@ -23,11 +23,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <jsonschema2pojo-maven-plugin.version>0.4.37</jsonschema2pojo-maven-plugin.version>
-        <jsonschema2pojo-maven-plugin.version>0.4.37</jsonschema2pojo-maven-plugin.version>
-        <jackson-annotations.version>2.6.3</jackson-annotations.version>
+        <jackson-annotations.version>2.9.0</jackson-annotations.version>
         <commons-lang.version>2.6</commons-lang.version>
-        <jackson-databind.version>2.6.3</jackson-databind.version>
-
+        <jackson-databind.version>2.9.6</jackson-databind.version>
     </properties>
 
     <dependencies>
@@ -63,7 +61,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>${jackson-annotations.version}</version>
+            <!--            <version>${jackson-annotations.version}</version>-->
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>

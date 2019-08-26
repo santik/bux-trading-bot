@@ -58,4 +58,14 @@ public class BotConfiguration {
     public void setLowerLimitPrice(double lowerLimitPrice) {
         this.lowerLimitPrice = lowerLimitPrice;
     }
+
+    @Override
+    public String toString() {
+        return "BotConfiguration{" +
+                "productId='" + productId + '\'' +
+                ", buyingPrice=" + buyingPrice +
+                ", upperLimitPrice=" + upperLimitPrice +
+                ", lowerLimitPrice=" + lowerLimitPrice +
+                '}';
+    }
 }
