@@ -19,17 +19,20 @@ public class BotConfigurator {
 
     public void configure(ApplicationArguments args) {
         for (String name : args.getOptionNames()) {
-            if (name.equals("productId")) {
-                botConfiguration.setProductId(args.getOptionValues(name).get(0));
-            }
-            if (name.equals("buyingPrice")) {
-                botConfiguration.setBuyingPrice(Double.parseDouble(args.getOptionValues(name).get(0)));
-            }
-            if (name.equals("upperLimitPrice")) {
-                botConfiguration.setUpperLimitPrice(Double.parseDouble(args.getOptionValues(name).get(0)));
-            }
-            if (name.equals("lowerLimitPrice")) {
-                botConfiguration.setLowerLimitPrice(Double.parseDouble(args.getOptionValues(name).get(0)));
+            String value = args.getOptionValues(name).get(0);
+            switch (name) {
+                case "productId":
+                    botConfiguration.setProductId(value);
+                    break;
+                case "buyingPrice":
+                    botConfiguration.setBuyingPrice(Double.parseDouble(value));
+                    break;
+                case "upperLimitPrice":
+                    botConfiguration.setUpperLimitPrice(Double.parseDouble(args.getOptionValues(name).get(0)));
+                    break;
+                case "lowerLimitPrice":
+                    botConfiguration.setLowerLimitPrice(Double.parseDouble(args.getOptionValues(name).get(0)));
+                    break;
             }
         }
         botConfiguration.init();

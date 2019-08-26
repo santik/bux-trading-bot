@@ -48,5 +48,4 @@ public class WebSocketSessionProvider {
             throw new RuntimeException(e);
         }
     }
-
 }

@@ -10,6 +10,8 @@ import java.util.Collections;
 @Service
 public class RestTemplateProvider {
 
+    private static final String APPLICATION_JSON = "application/json";
+
     @Value("${bux.authorization.header}")
     private String authorization;
 
@@ -22,8 +24,8 @@ public class RestTemplateProvider {
             HttpHeaders headers = request.getHeaders();
             headers.add("Authorization", authorization);
             headers.add("Accept-language", language);
-            headers.add("Content-Type", "application/json");
-            headers.add("Accept", "application/json");
+            headers.add("Content-Type", APPLICATION_JSON);
+            headers.add("Accept", APPLICATION_JSON);
             return execution.execute(request, body);
         }));
         return restTemplate;
