@@ -1,0 +1,244 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "id",
+    "positionId",
+    "profitAndLoss",
+    "product",
+    "investingAmount",
+    "price",
+    "leverage",
+    "direction",
+    "type",
+    "dateCreated"
+  ],
+  "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "string",
+      "title": "The Id Schema",
+      "default": "",
+      "examples": [
+        "2bd0e5b8-ff8d-465f-9faf-59aa74c546fd"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "positionId": {
+      "$id": "#/properties/positionId",
+      "type": "string",
+      "title": "The Positionid Schema",
+      "default": "",
+      "examples": [
+        "ff8e864c-d475-438d-be63-341de8df340c"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "profitAndLoss": {
+      "$id": "#/properties/profitAndLoss",
+      "type": "object",
+      "title": "The Profitandloss Schema",
+      "required": [
+        "currency",
+        "decimals",
+        "amount"
+      ],
+      "properties": {
+        "currency": {
+          "$id": "#/properties/profitAndLoss/properties/currency",
+          "type": "string",
+          "title": "The Currency Schema",
+          "default": "",
+          "examples": [
+            "BUX"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "decimals": {
+          "$id": "#/properties/profitAndLoss/properties/decimals",
+          "type": "integer",
+          "title": "The Decimals Schema",
+          "default": 0,
+          "examples": [
+            2
+          ]
+        },
+        "amount": {
+          "$id": "#/properties/profitAndLoss/properties/amount",
+          "type": "number",
+          "title": "The Amount Schema",
+          "default": "",
+          "examples": [
+            "0.00"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    "product": {
+      "$id": "#/properties/product",
+      "type": "object",
+      "title": "The Product Schema",
+      "required": [
+        "securityId",
+        "symbol",
+        "displayName"
+      ],
+      "properties": {
+        "securityId": {
+          "$id": "#/properties/product/properties/securityId",
+          "type": "string",
+          "title": "The Securityid Schema",
+          "default": "",
+          "examples": [
+            "sb26496"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "symbol": {
+          "$id": "#/properties/product/properties/symbol",
+          "type": "string",
+          "title": "The Symbol Schema",
+          "default": "",
+          "examples": [
+            "US500"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "displayName": {
+          "$id": "#/properties/product/properties/displayName",
+          "type": "string",
+          "title": "The Displayname Schema",
+          "default": "",
+          "examples": [
+            "US 500"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    "investingAmount": {
+      "$id": "#/properties/investingAmount",
+      "type": "object",
+      "title": "The Investingamount Schema",
+      "required": [
+        "currency",
+        "decimals",
+        "amount"
+      ],
+      "properties": {
+        "currency": {
+          "$id": "#/properties/investingAmount/properties/currency",
+          "type": "string",
+          "title": "The Currency Schema",
+          "default": "",
+          "examples": [
+            "BUX"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "decimals": {
+          "$id": "#/properties/investingAmount/properties/decimals",
+          "type": "integer",
+          "title": "The Decimals Schema",
+          "default": 0,
+          "examples": [
+            2
+          ]
+        },
+        "amount": {
+          "$id": "#/properties/investingAmount/properties/amount",
+          "type": "number",
+          "title": "The Amount Schema",
+          "default": "",
+          "examples": [
+            "50.00"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    "price": {
+      "$id": "#/properties/price",
+      "type": "object",
+      "title": "The Price Schema",
+      "required": [
+        "currency",
+        "decimals",
+        "amount"
+      ],
+      "properties": {
+        "currency": {
+          "$id": "#/properties/price/properties/currency",
+          "type": "string",
+          "title": "The Currency Schema",
+          "default": "",
+          "examples": [
+            "USD"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "decimals": {
+          "$id": "#/properties/price/properties/decimals",
+          "type": "integer",
+          "title": "The Decimals Schema",
+          "default": 0,
+          "examples": [
+            2
+          ]
+        },
+        "amount": {
+          "$id": "#/properties/price/properties/amount",
+          "type": "number",
+          "title": "The Amount Schema",
+          "default": "",
+          "examples": [
+            "2907.00"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    "leverage": {
+      "$id": "#/properties/leverage",
+      "type": "integer",
+      "title": "The Leverage Schema",
+      "default": 0,
+      "examples": [
+        2
+      ]
+    },
+    "direction": {
+      "$id": "#/properties/direction",
+      "type": "string",
+      "title": "The Direction Schema",
+      "default": "",
+      "examples": [
+        "BUY"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "type": {
+      "$id": "#/properties/type",
+      "type": "string",
+      "title": "The Type Schema",
+      "default": "",
+      "examples": [
+        "OPEN"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "dateCreated": {
+      "$id": "#/properties/dateCreated",
+      "type": "number",
+      "title": "The Datecreated Schema",
+      "default": 0,
+      "examples": [
+        1566486155452
+      ]
+    }
+  }
+}

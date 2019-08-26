@@ -1,0 +1,116 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "productId",
+    "investingAmount",
+    "leverage",
+    "direction",
+    "source"
+  ],
+  "properties": {
+    "productId": {
+      "$id": "#/properties/productId",
+      "type": "string",
+      "title": "The Productid Schema",
+      "default": "",
+      "examples": [
+        "sb26493"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "investingAmount": {
+      "$id": "#/properties/investingAmount",
+      "type": "object",
+      "title": "The Investingamount Schema",
+      "required": [
+        "currency",
+        "decimals",
+        "amount"
+      ],
+      "properties": {
+        "currency": {
+          "$id": "#/properties/investingAmount/properties/currency",
+          "type": "string",
+          "title": "The Currency Schema",
+          "default": "",
+          "enum": [
+            "BUX"
+          ],
+          "examples": [
+            "BUX"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "decimals": {
+          "$id": "#/properties/investingAmount/properties/decimals",
+          "type": "integer",
+          "title": "The Decimals Schema",
+          "default": 0,
+          "examples": [
+            2
+          ]
+        },
+        "amount": {
+          "$id": "#/properties/investingAmount/properties/amount",
+          "type": "number",
+          "title": "The Amount Schema",
+          "default": "",
+          "examples": [
+            "10.00"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    "leverage": {
+      "$id": "#/properties/leverage",
+      "type": "integer",
+      "title": "The Leverage Schema",
+      "default": 0,
+      "examples": [
+        2
+      ]
+    },
+    "direction": {
+      "$id": "#/properties/direction",
+      "type": "string",
+      "title": "The Direction Schema",
+      "default": "",
+      "enum": [
+        "BUY",
+        "SELL"
+      ],
+      "examples": [
+        "BUY"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "source": {
+      "$id": "#/properties/source",
+      "type": "object",
+      "title": "The Source Schema",
+      "required": [
+        "sourceType"
+      ],
+      "properties": {
+        "sourceType": {
+          "$id": "#/properties/source/properties/sourceType",
+          "type": "string",
+          "title": "The Sourcetype Schema",
+          "default": "",
+          "enum": [
+            "OTHER"
+          ],
+          "examples": [
+            "OTHER"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    }
+  }
+}

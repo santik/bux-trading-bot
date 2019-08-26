@@ -1,0 +1,75 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "t",
+    "id",
+    "v",
+    "body"
+  ],
+  "properties": {
+    "t": {
+      "$id": "#/properties/t",
+      "type": "string",
+      "title": "The T Schema",
+      "default": "",
+      "examples": [
+        "trading.quote"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "id": {
+      "$id": "#/properties/id",
+      "type": "string",
+      "title": "The Id Schema",
+      "default": "",
+      "examples": [
+        "0e8239a7-c386-11e9-87a5-ff3d43235f73"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "v": {
+      "$id": "#/properties/v",
+      "type": "integer",
+      "title": "The V Schema",
+      "default": 0,
+      "examples": [
+        2
+      ]
+    },
+    "body": {
+      "$id": "#/properties/body",
+      "type": "object",
+      "title": "The Body Schema",
+      "required": [
+        "securityId",
+        "currentPrice"
+      ],
+      "properties": {
+        "securityId": {
+          "$id": "#/properties/body/properties/securityId",
+          "type": "string",
+          "title": "The Securityid Schema",
+          "default": "",
+          "examples": [
+            "sb26493"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "currentPrice": {
+          "$id": "#/properties/body/properties/currentPrice",
+          "type": "number",
+          "title": "The Currentprice Schema",
+          "default": "",
+          "examples": [
+            "11612.5"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    }
+  }
+}
