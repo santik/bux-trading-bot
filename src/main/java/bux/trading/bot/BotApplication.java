@@ -1,6 +1,6 @@
 package bux.trading.bot;
 
-import bux.trading.bot.provider.WebSocketSessionProvider;
+import bux.trading.bot.config.provider.WebSocketSessionProvider;
 import bux.trading.bot.service.BotConfigurator;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

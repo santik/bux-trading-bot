@@ -1,6 +1,6 @@
 package bux.trading.bot;
 
-import bux.trading.bot.provider.WebSocketSessionProvider;
+import bux.trading.bot.config.provider.WebSocketSessionProvider;
 import bux.trading.bot.service.BotConfigurator;
 import org.junit.Test;
 import org.junit.runner.RunWith;

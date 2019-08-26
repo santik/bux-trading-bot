@@ -1,4 +1,4 @@
-package bux.trading.bot.provider;
+package bux.trading.bot.config.provider;
 
 import bux.trading.bot.config.websocket.BuxEndpoint;
 import bux.trading.bot.config.websocket.BuxConfigurator;

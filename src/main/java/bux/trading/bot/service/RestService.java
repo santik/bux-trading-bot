@@ -1,9 +1,10 @@
 package bux.trading.bot.service;
 
-import bux.trading.bot.provider.RestTemplateProvider;
+import bux.trading.bot.config.provider.RestTemplateProvider;
 import bux.trading.bot.generated.BuyOrder;
 import bux.trading.bot.generated.InvestingAmount;
 import bux.trading.bot.generated.RestApiResponse;
+import bux.trading.bot.generated.Source;
 import bux.trading.bot.product.Product;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
@@ -56,7 +57,7 @@ public class RestService {
         buyOrder.setInvestingAmount(new InvestingAmount(InvestingAmount.Currency.BUX, 2, 10.0));
         buyOrder.setLeverage(2);
         buyOrder.setProductId(productId);
-        buyOrder.setSource(new bux.trading.bot.generated.Source(OTHER));
+        buyOrder.setSource(new Source(OTHER));
         return buyOrder;
     }
 }

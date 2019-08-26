@@ -1,4 +1,4 @@
-package bux.trading.bot.provider;
+package bux.trading.bot.config.provider;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
