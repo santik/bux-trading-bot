@@ -1,18 +1,18 @@
 package bux.trading.bot;
 
-import bux.trading.bot.config.BotConfiguration;
 import bux.trading.bot.provider.WebSocketSessionProvider;
+import bux.trading.bot.service.BotConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
 @SpringBootApplication
-public class BotApplication implements CommandLineRunner {
+public class BotApplication implements ApplicationRunner {
 
     @Autowired
-    private BotConfiguration botConfiguration;
+    private BotConfigurator botConfigurator;
 
     @Autowired
     private WebSocketSessionProvider webSocketSessionProvider;
@@ -22,8 +22,8 @@ public class BotApplication implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) {
-//        productContext.setProductId("some");
+    public void run(ApplicationArguments args) {
+        botConfigurator.configure(args);
         webSocketSessionProvider.provide();
     }
 }
