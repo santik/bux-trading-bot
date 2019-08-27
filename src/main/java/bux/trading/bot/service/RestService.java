@@ -54,7 +54,7 @@ public class RestService {
     private BuyOrder getBuyOrder(String productId) {
         BuyOrder buyOrder = new BuyOrder();
         buyOrder.setDirection(BuyOrder.Direction.BUY);
-        buyOrder.setInvestingAmount(new InvestingAmount(InvestingAmount.Currency.BUX, 2, 10.0));
+        buyOrder.setInvestingAmount(new InvestingAmount(InvestingAmount.Currency.BUX, 2, 100.0));
         buyOrder.setLeverage(2);
         buyOrder.setProductId(productId);
         buyOrder.setSource(new Source(OTHER));

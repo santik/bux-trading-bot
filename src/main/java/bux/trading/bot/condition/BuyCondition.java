@@ -23,8 +23,8 @@ public class BuyCondition {
     }
 
     private boolean isBuyingPriceAcceptable(Body quote, BotConfiguration botConfiguration) {
-        return quote.getCurrentPrice() > getMinBuyingPrice(botConfiguration.getBuyingPrice()) &&
-                quote.getCurrentPrice() < getMaxBuyingPrice(botConfiguration.getBuyingPrice());
+        return quote.getCurrentPrice() >= getMinBuyingPrice(botConfiguration.getBuyingPrice())
+                && quote.getCurrentPrice() <= getMaxBuyingPrice(botConfiguration.getBuyingPrice());
     }
 
     private Double getMaxBuyingPrice(Double price) {
