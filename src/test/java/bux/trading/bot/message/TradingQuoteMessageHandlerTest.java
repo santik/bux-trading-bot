@@ -1,4 +1,4 @@
-package bux.trading.bot.message.handler;
+package bux.trading.bot.message;
 
 import bux.trading.bot.condition.BuyCondition;
 import bux.trading.bot.condition.LowerLimitSellCondition;

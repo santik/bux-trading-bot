@@ -1,8 +1,7 @@
-package bux.trading.bot.service;
+package bux.trading.bot.message;
 
 import bux.trading.bot.generated.WebsocketResponseMessage;
-import bux.trading.bot.message.handler.ProductSubscriber;
-import bux.trading.bot.message.handler.TradingQuoteMessageHandler;
+import bux.trading.bot.service.ProductSubscriber;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;

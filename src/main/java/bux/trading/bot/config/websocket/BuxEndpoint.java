@@ -1,6 +1,6 @@
 package bux.trading.bot.config.websocket;
 
-import bux.trading.bot.service.WebsocketMessageHandler;
+import bux.trading.bot.message.WebsocketMessageHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,4 +1,4 @@
-package bux.trading.bot.message.handler;
+package bux.trading.bot.service;
 
 import bux.trading.bot.config.BotConfiguration;
 import bux.trading.bot.message.SubscribeProductRequest;

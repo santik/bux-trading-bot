@@ -1,6 +1,6 @@
 package bux.trading.bot.config.websocket;
 
-import bux.trading.bot.service.WebsocketMessageHandler;
+import bux.trading.bot.message.WebsocketMessageHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
