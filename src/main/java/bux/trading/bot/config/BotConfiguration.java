@@ -55,8 +55,20 @@ public class BotConfiguration {
         this.upperLimitPrice = upperLimitPrice;
     }
 
+    public void setBuyingPrice(String buyingPrice) {
+        this.buyingPrice = Double.parseDouble(buyingPrice);
+    }
+
+    public void setUpperLimitPrice(String upperLimitPrice) {
+        this.upperLimitPrice = Double.parseDouble(upperLimitPrice);
+    }
+
     public void setLowerLimitPrice(double lowerLimitPrice) {
         this.lowerLimitPrice = lowerLimitPrice;
+    }
+
+    public void setLowerLimitPrice(String lowerLimitPrice) {
+        this.lowerLimitPrice = Double.parseDouble(lowerLimitPrice);
     }
 
     @Override

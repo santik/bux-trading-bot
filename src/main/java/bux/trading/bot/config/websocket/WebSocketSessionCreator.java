@@ -32,15 +32,14 @@ public class WebSocketSessionCreator {
     public Session create() {
         try {
             BuxConfigurator buxConfigurator = new BuxConfigurator(authorization, language);
-            BuxEndpoint endpointConfig = new BuxEndpoint(websocketMessageHandler);
-
+            BuxEndpoint endpoint = new BuxEndpoint(websocketMessageHandler);
             ClientEndpointConfig clientEndpointConfig = ClientEndpointConfig.Builder.create()
                     .configurator(buxConfigurator)
                     .encoders(Collections.singletonList(BuxEncoder.class))
                     .build();
-
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
-            return container.connectToServer(endpointConfig, clientEndpointConfig, new URI(webSocketUri));
+
+            return container.connectToServer(endpoint, clientEndpointConfig, new URI(webSocketUri));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

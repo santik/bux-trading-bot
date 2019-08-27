@@ -6,6 +6,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 @Service
 public class BotConfigurator {
 
@@ -20,22 +23,18 @@ public class BotConfigurator {
     public void configure(ApplicationArguments args) {
         for (String name : args.getOptionNames()) {
             String value = args.getOptionValues(name).get(0);
-            switch (name) {
-                case "productId":
-                    botConfiguration.setProductId(value);
-                    break;
-                case "buyingPrice":
-                    botConfiguration.setBuyingPrice(Double.parseDouble(value));
-                    break;
-                case "upperLimitPrice":
-                    botConfiguration.setUpperLimitPrice(Double.parseDouble(args.getOptionValues(name).get(0)));
-                    break;
-                case "lowerLimitPrice":
-                    botConfiguration.setLowerLimitPrice(Double.parseDouble(args.getOptionValues(name).get(0)));
-                    break;
+            try {
+                Method method = BotConfiguration.class.getMethod(getSetterName(name), String.class);
+                method.invoke(botConfiguration, value);
+            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                LOGGER.error(e.getMessage());
             }
         }
         botConfiguration.init();
         LOGGER.info("Bot configured with parameters {}", botConfiguration);
+    }
+
+    private String getSetterName(String parameterName) {
+        return "set" + parameterName.substring(0, 1).toUpperCase() + parameterName.substring(1);
     }
 }
