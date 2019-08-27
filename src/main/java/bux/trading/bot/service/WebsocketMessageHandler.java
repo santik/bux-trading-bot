@@ -1,7 +1,7 @@
 package bux.trading.bot.service;
 
 import bux.trading.bot.generated.WebsocketResponseMessage;
-import bux.trading.bot.message.handler.ConnectedMessageHandler;
+import bux.trading.bot.message.handler.ProductSubscriber;
 import bux.trading.bot.message.handler.TradingQuoteMessageHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -12,25 +12,25 @@ import javax.websocket.Session;
 import java.io.IOException;
 
 @Service
-public class MessageRouter {
+public class WebsocketMessageHandler {
 
     private static final String CONNECT_CONNECTED = "connect.connected";
     private static final String TRADING_QUOTE = "trading.quote";
-    private static final Logger LOGGER = LoggerFactory.getLogger(MessageRouter.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebsocketMessageHandler.class);
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-    private ConnectedMessageHandler connectedMessageHandler;
+    private ProductSubscriber productSubscriber;
     private TradingQuoteMessageHandler tradingQuoteMessageHandler;
 
-    public MessageRouter(ConnectedMessageHandler connectedMessageHandler, TradingQuoteMessageHandler tradingQuoteMessageHandler) {
-        this.connectedMessageHandler = connectedMessageHandler;
+    public WebsocketMessageHandler(ProductSubscriber productSubscriber, TradingQuoteMessageHandler tradingQuoteMessageHandler) {
+        this.productSubscriber = productSubscriber;
         this.tradingQuoteMessageHandler = tradingQuoteMessageHandler;
     }
 
-    public void route(String messageJson, Session session) throws IOException {
+    public void handle(String messageJson, Session session) throws IOException {
         WebsocketResponseMessage message = OBJECT_MAPPER.readValue(messageJson, WebsocketResponseMessage.class);
 
         if (isConnectedMessage(message)) {
-            connectedMessageHandler.handle(session);
+            productSubscriber.subscribe(session);
         } else if (isTradingQuoteMessage(message)) {
             tradingQuoteMessageHandler.handle(message);
         } else {

@@ -1,6 +1,6 @@
 package bux.trading.bot;
 
-import bux.trading.bot.config.provider.WebSocketSessionProvider;
+import bux.trading.bot.config.websocket.WebSocketSessionCreator;
 import bux.trading.bot.service.BotConfigurator;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -12,11 +12,11 @@ public class BotApplication implements ApplicationRunner {
 
     private BotConfigurator botConfigurator;
 
-    private WebSocketSessionProvider webSocketSessionProvider;
+    private WebSocketSessionCreator webSocketSessionCreator;
 
-    public BotApplication(BotConfigurator botConfigurator, WebSocketSessionProvider webSocketSessionProvider) {
+    public BotApplication(BotConfigurator botConfigurator, WebSocketSessionCreator webSocketSessionCreator) {
         this.botConfigurator = botConfigurator;
-        this.webSocketSessionProvider = webSocketSessionProvider;
+        this.webSocketSessionCreator = webSocketSessionCreator;
     }
 
     public static void main(String[] args) {
@@ -26,6 +26,6 @@ public class BotApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
         botConfigurator.configure(args);
-        webSocketSessionProvider.provide();
+        webSocketSessionCreator.create();
     }
 }

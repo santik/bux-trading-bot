@@ -1,9 +1,6 @@
-package bux.trading.bot.config.provider;
+package bux.trading.bot.config.websocket;
 
-import bux.trading.bot.config.websocket.BuxEndpoint;
-import bux.trading.bot.config.websocket.BuxConfigurator;
-import bux.trading.bot.config.websocket.BuxEncoder;
-import bux.trading.bot.service.MessageRouter;
+import bux.trading.bot.service.WebsocketMessageHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +12,9 @@ import java.net.URI;
 import java.util.Collections;
 
 @Service
-public class WebSocketSessionProvider {
+public class WebSocketSessionCreator {
 
-    private MessageRouter messageRouter;
+    private WebsocketMessageHandler websocketMessageHandler;
 
     @Value("${bux.authorization.header}")
     private String authorization;
@@ -28,14 +25,14 @@ public class WebSocketSessionProvider {
     @Value("${bux.websocket.uri}")
     private String webSocketUri;
 
-    public WebSocketSessionProvider(MessageRouter messageRouter) {
-        this.messageRouter = messageRouter;
+    public WebSocketSessionCreator(WebsocketMessageHandler websocketMessageHandler) {
+        this.websocketMessageHandler = websocketMessageHandler;
     }
 
-    public Session provide() {
+    public Session create() {
         try {
             BuxConfigurator buxConfigurator = new BuxConfigurator(authorization, language);
-            BuxEndpoint endpointConfig = new BuxEndpoint(messageRouter);
+            BuxEndpoint endpointConfig = new BuxEndpoint(websocketMessageHandler);
 
             ClientEndpointConfig clientEndpointConfig = ClientEndpointConfig.Builder.create()
                     .configurator(buxConfigurator)

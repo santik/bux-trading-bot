@@ -1,6 +1,6 @@
 package bux.trading.bot.config.websocket;
 
-import bux.trading.bot.service.MessageRouter;
+import bux.trading.bot.service.WebsocketMessageHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,10 +13,10 @@ public class BuxEndpoint extends Endpoint {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BuxEndpoint.class);
 
-    private MessageRouter messageRouter;
+    private WebsocketMessageHandler websocketMessageHandler;
 
-    public BuxEndpoint(MessageRouter messageRouter) {
-        this.messageRouter = messageRouter;
+    public BuxEndpoint(WebsocketMessageHandler websocketMessageHandler) {
+        this.websocketMessageHandler = websocketMessageHandler;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class BuxEndpoint extends Endpoint {
             @Override
             public void onMessage(String message) {
                 try {
-                    messageRouter.route(message, session);
+                    websocketMessageHandler.handle(message, session);
                 } catch (Exception e) {
                     LOGGER.error("Error " + e.toString() + " with message " + message);
                 }

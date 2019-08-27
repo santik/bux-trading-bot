@@ -11,17 +11,17 @@ import javax.websocket.Session;
 import java.io.IOException;
 
 @Service
-public class ConnectedMessageHandler {
+public class ProductSubscriber {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ConnectedMessageHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductSubscriber.class);
 
     private BotConfiguration botConfiguration;
 
-    public ConnectedMessageHandler(BotConfiguration botConfiguration) {
+    public ProductSubscriber(BotConfiguration botConfiguration) {
         this.botConfiguration = botConfiguration;
     }
 
-    public void handle(Session webSocketSession) {
+    public void subscribe(Session webSocketSession) {
         try {
             SubscribeProductRequest subscribeProductRequest = new SubscribeProductRequest();
             subscribeProductRequest.addSubscribeTo(botConfiguration.getProductId());

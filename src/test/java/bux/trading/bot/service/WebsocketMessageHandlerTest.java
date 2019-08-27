@@ -1,7 +1,7 @@
 package bux.trading.bot.service;
 
 import bux.trading.bot.generated.WebsocketResponseMessage;
-import bux.trading.bot.message.handler.ConnectedMessageHandler;
+import bux.trading.bot.message.handler.ProductSubscriber;
 import bux.trading.bot.message.handler.TradingQuoteMessageHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
@@ -19,10 +19,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class MessageRouterTest {
+public class WebsocketMessageHandlerTest {
 
     @Mock
-    private ConnectedMessageHandler connectedMessageHandler;
+    private ProductSubscriber productSubscriber;
 
     @Mock
     private TradingQuoteMessageHandler tradingQuoteMessageHandler;
@@ -38,14 +38,14 @@ public class MessageRouterTest {
         WebsocketResponseMessage websocketResponseMessage = mock(WebsocketResponseMessage.class);
         when(websocketResponseMessage.getT()).thenReturn(type);
         when(mapper.readValue(jsonString, WebsocketResponseMessage.class)).thenReturn(websocketResponseMessage);
-        MessageRouter messageRouter = getMessageRouter();
+        WebsocketMessageHandler websocketMessageHandler = getMessageRouter();
         Session session = mock(Session.class);
 
         //act
-        messageRouter.route(jsonString, session);
+        websocketMessageHandler.handle(jsonString, session);
 
         //assert
-        verify(connectedMessageHandler).handle(session);
+        verify(productSubscriber).subscribe(session);
         verify(tradingQuoteMessageHandler, never()).handle(websocketResponseMessage);
     }
 
@@ -57,14 +57,14 @@ public class MessageRouterTest {
         WebsocketResponseMessage websocketResponseMessage = mock(WebsocketResponseMessage.class);
         when(websocketResponseMessage.getT()).thenReturn(type);
         when(mapper.readValue(jsonString, WebsocketResponseMessage.class)).thenReturn(websocketResponseMessage);
-        MessageRouter messageRouter = getMessageRouter();
+        WebsocketMessageHandler websocketMessageHandler = getMessageRouter();
         Session session = mock(Session.class);
 
         //act
-        messageRouter.route(jsonString, session);
+        websocketMessageHandler.handle(jsonString, session);
 
         //assert
-        verify(connectedMessageHandler, never()).handle(session);
+        verify(productSubscriber, never()).subscribe(session);
         verify(tradingQuoteMessageHandler).handle(websocketResponseMessage);
     }
 
@@ -76,25 +76,25 @@ public class MessageRouterTest {
         WebsocketResponseMessage websocketResponseMessage = mock(WebsocketResponseMessage.class);
         when(websocketResponseMessage.getT()).thenReturn(type);
         when(mapper.readValue(jsonString, WebsocketResponseMessage.class)).thenReturn(websocketResponseMessage);
-        MessageRouter messageRouter = getMessageRouter();
+        WebsocketMessageHandler websocketMessageHandler = getMessageRouter();
         Session session = mock(Session.class);
 
         //act
-        messageRouter.route(jsonString, session);
+        websocketMessageHandler.handle(jsonString, session);
 
         //assert
-        verify(connectedMessageHandler, never()).handle(session);
+        verify(productSubscriber, never()).subscribe(session);
         verify(tradingQuoteMessageHandler, never()).handle(websocketResponseMessage);
     }
 
-    private MessageRouter getMessageRouter() throws Exception {
-        Field field = MessageRouter.class.getDeclaredField("OBJECT_MAPPER");
+    private WebsocketMessageHandler getMessageRouter() throws Exception {
+        Field field = WebsocketMessageHandler.class.getDeclaredField("OBJECT_MAPPER");
         field.setAccessible(true);
         Field modifiersField = Field.class.getDeclaredField("modifiers");
         modifiersField.setAccessible(true);
         modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
         field.set(null, mapper);
-        return new MessageRouter(connectedMessageHandler, tradingQuoteMessageHandler);
+        return new WebsocketMessageHandler(productSubscriber, tradingQuoteMessageHandler);
     }
 
 }

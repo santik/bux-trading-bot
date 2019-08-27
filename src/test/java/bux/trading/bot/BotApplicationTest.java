@@ -1,6 +1,6 @@
 package bux.trading.bot;
 
-import bux.trading.bot.config.provider.WebSocketSessionProvider;
+import bux.trading.bot.config.websocket.WebSocketSessionCreator;
 import bux.trading.bot.service.BotConfigurator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,12 +18,12 @@ public class BotApplicationTest {
     private BotConfigurator botConfigurator;
 
     @Mock
-    private WebSocketSessionProvider webSocketSessionProvider;
+    private WebSocketSessionCreator webSocketSessionCreator;
 
     @Test
     public void run_shouldConfigureAndProvideASession() {
         //arrange
-        BotApplication application = new BotApplication(botConfigurator, webSocketSessionProvider);
+        BotApplication application = new BotApplication(botConfigurator, webSocketSessionCreator);
         ApplicationArguments args = mock(ApplicationArguments.class);
 
         //act
@@ -31,6 +31,6 @@ public class BotApplicationTest {
 
         //assert
         verify(botConfigurator).configure(args);
-        verify(webSocketSessionProvider).provide();
+        verify(webSocketSessionCreator).create();
     }
 }

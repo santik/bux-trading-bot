@@ -1,6 +1,6 @@
 package bux.trading.bot.service;
 
-import bux.trading.bot.config.provider.RestTemplateProvider;
+import bux.trading.bot.config.RestTemplateProvider;
 import bux.trading.bot.generated.BuyOrder;
 import bux.trading.bot.generated.InvestingAmount;
 import bux.trading.bot.generated.RestApiResponse;

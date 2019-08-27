@@ -21,9 +21,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ConnectedMessageHandlerTest {
+public class ProductSubscriberTest {
 
-    private ConnectedMessageHandler connectedMessageHandler;
+    private ProductSubscriber productSubscriber;
 
     @Mock
     private BotConfiguration botConfiguration;
@@ -33,7 +33,7 @@ public class ConnectedMessageHandlerTest {
 
     @Before
     public void setUp() {
-        connectedMessageHandler = new ConnectedMessageHandler(botConfiguration);
+        productSubscriber = new ProductSubscriber(botConfiguration);
     }
 
     @Test(expected = RuntimeException.class)
@@ -45,7 +45,7 @@ public class ConnectedMessageHandlerTest {
         when(session.getBasicRemote()).thenReturn(basic);
 
         //act
-        connectedMessageHandler.handle(session);
+        productSubscriber.subscribe(session);
 
         //verify
         verify(botConfiguration, times(1)).getProductId();
@@ -57,7 +57,7 @@ public class ConnectedMessageHandlerTest {
         when(botConfiguration.getProductId()).thenThrow(new IOException(""));
 
         //act
-        connectedMessageHandler.handle(session);
+        productSubscriber.subscribe(session);
 
         //verify
         verify(botConfiguration, times(1)).getProductId();
@@ -71,7 +71,7 @@ public class ConnectedMessageHandlerTest {
         when(session.getBasicRemote()).thenReturn(basic);
 
         //act
-        connectedMessageHandler.handle(session);
+        productSubscriber.subscribe(session);
 
         //verify
         verify(botConfiguration, times(2)).getProductId();

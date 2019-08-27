@@ -3,7 +3,7 @@ package bux.trading.bot.service;
 import bux.trading.bot.generated.BuyOrder;
 import bux.trading.bot.generated.RestApiResponse;
 import bux.trading.bot.product.Product;
-import bux.trading.bot.config.provider.RestTemplateProvider;
+import bux.trading.bot.config.RestTemplateProvider;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
